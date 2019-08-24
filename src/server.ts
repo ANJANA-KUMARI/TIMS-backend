@@ -4,6 +4,7 @@ import express from 'express';
 import { applyMiddleware, applyRoutes } from './utils';
 import middleware from './middleware';
 import errorHandlers from './middleware/errorHandlers';
+import subjectRoutes from './services/class-management';
 
 dotenv.config();
 
@@ -32,7 +33,8 @@ applyMiddleware(middleware, router);
 applyMiddleware(errorHandlers, router);
 
 // Routes
-// applyRoutes(routes, router, `${API_PREFIX}/`);
+
+applyRoutes(subjectRoutes, router, `${API_PREFIX}`);
 
 const { PORT = 5000 } = process.env;
 const server = http.createServer(router);
