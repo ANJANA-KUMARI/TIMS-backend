@@ -2,6 +2,9 @@ import logger from '../logger';
 import config from '../../config';
 import { createConnection } from 'typeorm';
 import { Subject } from '../../services/class-management/subject/subject.entity';
+import { Grade } from '../../services/class-management/tution-class/entities/grade.entity';
+import { TutionClassType } from '../../services/class-management/tution-class/entities/tution-class-type.entity';
+import { TutionClass } from '../../services/class-management/tution-class/entities/tution-class.entity';
 
 const connection = createConnection({
   type: 'mysql',
@@ -10,7 +13,7 @@ const connection = createConnection({
   username: config.database.username,
   password: config.database.password,
   database: config.database.database,
-  entities: [Subject],
+  entities: [Subject, TutionClass, Grade, TutionClassType],
   synchronize: true
 });
 
