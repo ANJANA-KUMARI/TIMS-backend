@@ -2,7 +2,10 @@ import appRoot from 'app-root-path';
 
 export default {
   database: {
-    uri: process.env.DB || 'add_your_dev_time_db_url'
+    uri: process.env.DB_URI || 'localhost',
+    username: process.env.DB_USERNAME || 'root',
+    password: process.env.DB_PASSWORD || '9896',
+    database: process.env.DB || 'tims'
   },
   env: process.env.NODE_ENV || 'development',
   logger: {

@@ -1,4 +1,5 @@
 import dotenv, { config } from 'dotenv';
+import 'reflect-metadata';
 import http from 'http';
 import express from 'express';
 import { applyMiddleware, applyRoutes } from './utils';
@@ -25,7 +26,7 @@ const router = express();
 const API_PREFIX = '/v1';
 
 // db
-// require('./utils/db');
+require('./utils/db');
 
 // Common middleware
 applyMiddleware(middleware, router);
