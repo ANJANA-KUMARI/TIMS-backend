@@ -25,7 +25,7 @@ export const createSubject = async (
 export const getAllSubjects = async (): Promise<Subject[]> => {
   const subjectRepo = await getRepo();
 
-  const allSubjects = await subjectRepo.find();
+  const allSubjects = await subjectRepo.find({ relations: ['tutionClasses'] });
   return allSubjects;
 };
 

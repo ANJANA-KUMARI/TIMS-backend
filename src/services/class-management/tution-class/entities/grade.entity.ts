@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryColumn, ManyToMany } from 'typeorm';
+import { TutionClass } from './tution-class.entity';
 
 @Entity()
 export class Grade {
@@ -8,8 +9,12 @@ export class Grade {
   @Column()
   val: number;
 
+  @ManyToMany(type => TutionClass, tutionClass => tutionClass.grades)
+  tutionClasses: TutionClass[];
+
   constructor(id: number, val: number) {
     this.id = id;
     this.val = val;
+    this.tutionClasses = null!;
   }
 }

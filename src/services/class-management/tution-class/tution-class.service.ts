@@ -54,7 +54,7 @@ export const createDefaultGrades = async () => {
 export const getAllGrades = async () => {
   const repo = await getGradeRepo();
 
-  const allGrades = await repo.find();
+  const allGrades = await repo.find({ relations: ['tutionClasses'] });
 
   return allGrades;
 };
@@ -81,7 +81,7 @@ export const createDefaultTutionClassTypes = async () => {
 export const getAllTutionClassTypes = async () => {
   const repo = await getClassTypeRepo();
 
-  const allClassTypes = await repo.find();
+  const allClassTypes = await repo.find({ relations: ['tutionClasses'] });
 
   return allClassTypes;
 };
