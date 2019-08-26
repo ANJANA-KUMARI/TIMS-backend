@@ -6,10 +6,12 @@ import { applyMiddleware, applyRoutes } from './utils';
 import middleware from './middleware';
 import errorHandlers from './middleware/errorHandlers';
 import subjectRoutes from './services/class-management';
+import { ClassMngDataLoader } from './services/class-management/';
 
 dotenv.config();
 
 import logger from './utils/logger';
+import { loadDefaultData } from './utils/DefaultDataLoader';
 
 process.on('uncaughtException', e => {
   console.log(e);
@@ -32,6 +34,9 @@ require('./utils/db');
 applyMiddleware(middleware, router);
 // Error handling middleware
 applyMiddleware(errorHandlers, router);
+
+// load default data
+loadDefaultData([ClassMngDataLoader]);
 
 // Routes
 
