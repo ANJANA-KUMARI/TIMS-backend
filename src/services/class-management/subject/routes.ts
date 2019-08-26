@@ -1,13 +1,13 @@
-import { Request, Response } from 'express';
-import { HTTP403Error } from '../../../utils/httpErrors';
+import { Request, Response } from "express";
+import { HTTP403Error } from "../../../utils/httpErrors";
 
-import logger from '../../../utils/logger';
-import { handleError, HTTP_METHOD } from '../../../utils';
-import { verifyJWTToken } from '../../../middleware/auth';
+import logger from "../../../utils/logger";
+import { handleError, HTTP_METHOD } from "../../../utils";
+import { verifyJWTToken } from "../../../middleware/auth";
 
-import * as subjectController from './subject.controller';
+import * as subjectController from "./subject.controller";
 
-const API_PRE = '/subject';
+const API_PRE = "/subject";
 
 export default [
   {

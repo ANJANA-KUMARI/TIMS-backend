@@ -4,7 +4,7 @@ export default {
   database: {
     uri: process.env.DB_URI || 'localhost',
     username: process.env.DB_USERNAME || 'root',
-    password: process.env.DB_PASSWORD || '9896',
+    password: process.env.DB_PASSWORD || '',
     database: process.env.DB || 'tims'
   },
   env: process.env.NODE_ENV || 'development',
