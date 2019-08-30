@@ -1,6 +1,7 @@
-import featureRoutes from './subject/routes';
-import { DataLoader } from './DataLoader';
+import subjectRoutes from "./subject/routes";
+import tutionClassRoutes from "./tution-class/routes";
+import { DataLoader } from "./DataLoader";
 
-export default [...featureRoutes];
+export default [...subjectRoutes, ...tutionClassRoutes];
 
 export const ClassMngDataLoader = new DataLoader();

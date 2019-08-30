@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { TutionClass } from '../tution-class/entities/tution-class.entity';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { TutionClass } from "../tution-class/entities/tution-class.entity";
 
 @Entity()
 export class Subject {
