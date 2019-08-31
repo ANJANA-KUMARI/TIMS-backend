@@ -85,6 +85,65 @@ export const createClass = async (
   }
 };
 
+export const updateTutionClass = async (
+  id: number,
+  venue: string,
+  date: Date,
+  startTime: Date,
+  endTime: Date,
+  teacherId: number,
+  gradeIds: number[],
+  tutionClassTypeId: number,
+  subjectId: number
+): Promise<TutionClass | null> => {
+  const tutionClassToUpdate = new TutionClass(venue, date, startTime, endTime);
+  tutionClassToUpdate.id = id;
+
+  const tutionClassRepo = await getClassRepo();
+  const teacherRepo = await getTeacherRepo();
+  const gradeRepo = await getGradeRepo();
+  const classTypeRepo = await getClassTypeRepo();
+  const subjectRepo = await getSubjectRepo();
+  // get the teacher
+  const teacherOfClass = await teacherRepo.findOne(teacherId);
+
+  // get grades
+  const gradesOfClass = gradeIds.map(async gId => {
+    return await gradeRepo.findOne(gId);
+  });
+
+  // get subject
+  const subjectOfClass = await subjectRepo.findOne(subjectId);
+
+  // get tution class type
+  const typeOfClass = await classTypeRepo.findOne(tutionClassTypeId);
+
+  if (
+    teacherOfClass === undefined ||
+    typeOfClass === undefined ||
+    subjectOfClass === undefined
+  ) {
+    // error
+    return null;
+  } else {
+    tutionClassToUpdate.teacher = teacherOfClass;
+    tutionClassToUpdate.grades = (gradesOfClass as any) as Grade[];
+    tutionClassToUpdate.type = typeOfClass;
+    tutionClassToUpdate.subject = subjectOfClass;
+
+    await tutionClassRepo.save(tutionClassToUpdate);
+    return tutionClassToUpdate;
+  }
+};
+
+export const deleteTutionClass = async (id: number) => {
+  const classRepo = await getClassRepo();
+
+  const tutionClassToDelete: TutionClass = (await classRepo.findOne(id))!;
+  await classRepo.remove(tutionClassToDelete);
+  return;
+};
+
 export const createDefaultGrades = async () => {
   const repo = await getGradeRepo();
 
@@ -172,4 +231,23 @@ export const getAllTutionClassTypes = async () => {
   const allClassTypes = await repo.find({ relations: ["tutionClasses"] });
 
   return allClassTypes;
+};
+
+export const getAllTutionClasses = async () => {
+  const repo = await getClassRepo();
+
+  const allTutionClasses = await repo.find({
+    relations: ["teacher", "subject", "grades", "type"]
+  });
+
+  return allTutionClasses;
+};
+
+export const getTutionClassById = async (
+  id: number
+): Promise<TutionClass | null> => {
+  const tutionClassRepo = await getClassRepo();
+
+  const tutionClass = (await tutionClassRepo.findOne(id)) || null;
+  return tutionClass;
 };
