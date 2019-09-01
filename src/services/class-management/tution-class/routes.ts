@@ -1,14 +1,14 @@
-import { Request, Response } from "express";
-import { HTTP403Error } from "../../../utils/httpErrors";
+import { Request, Response } from 'express';
+import { HTTP403Error } from '../../../utils/httpErrors';
 
-import logger from "../../../utils/logger";
-import { handleError, HTTP_METHOD } from "../../../utils";
-import { verifyJWTToken } from "../../../middleware/auth";
+import logger from '../../../utils/logger';
+import { handleError, HTTP_METHOD } from '../../../utils';
+import { verifyJWTToken } from '../../../middleware/auth';
 
-import * as tutionClassController from "./tution-class.controller";
-import { log } from "util";
+import * as tutionClassController from './tution-class.controller';
+import { log } from 'util';
 
-const API_PRE = "/tution-class";
+const API_PRE = '/tution-class';
 
 export default [
   {
@@ -85,9 +85,7 @@ export default [
           type,
           subject
         } = req.body;
-        console.log("====================================");
-        console.log(req.body);
-        console.log("====================================");
+
         const insertedTutionClass = await tutionClassController.createTutionClass(
           venue,
           date,

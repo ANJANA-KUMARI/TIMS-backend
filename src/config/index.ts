@@ -4,7 +4,7 @@ export default {
   database: {
     uri: process.env.DB_URI || 'localhost',
     username: process.env.DB_USERNAME || 'root',
-    password: process.env.DB_PASSWORD || '',
+    password: process.env.DB_PASSWORD || '9896',
     database: process.env.DB || 'tims'
   },
   env: process.env.NODE_ENV || 'development',
@@ -14,5 +14,8 @@ export default {
   },
   jwt: {
     secret: process.env.JWT_SEC || 'add_your_dev_time_secret'
+  },
+  app: {
+    studyMaterialUploadPath: `${appRoot}/uploads/study-material`
   }
 };
