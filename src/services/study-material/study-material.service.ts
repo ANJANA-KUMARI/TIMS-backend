@@ -1,7 +1,7 @@
-import dbCon from '../../utils/db';
-import { Connection } from 'typeorm';
-import { StudyMaterial } from './study-material.entity';
-import { TutionClass } from '../class-management/tution-class/entities/tution-class.entity';
+import dbCon from "../../utils/db";
+import { Connection } from "typeorm";
+import { StudyMaterial } from "./study-material.entity";
+import { TutionClass } from "../class-management/tution-class/entities/tution-class.entity";
 
 let con: Connection;
 
@@ -33,7 +33,17 @@ export const createStudyMaterial = async (
 
   await studyMaterialRepo.save(studyMaterial);
 
-  return studyMaterial;
+  const savedStudyMat = (await studyMaterialRepo.findOne(studyMaterial.id, {
+    relations: [
+      "tutionClass",
+      "tutionClass.subject",
+      "tutionClass.grades",
+      "tutionClass.teacher",
+      "tutionClass.type"
+    ]
+  })) as StudyMaterial;
+
+  return savedStudyMat;
 };
 
 export const getAllStudyMaterials = async (): Promise<StudyMaterial[]> => {
@@ -41,11 +51,11 @@ export const getAllStudyMaterials = async (): Promise<StudyMaterial[]> => {
 
   const allStudyMaterials = await studyMaterialRepo.find({
     relations: [
-      'tutionClass',
-      'tutionClass.subject',
-      'tutionClass.grades',
-      'tutionClass.teacher',
-      'tutionClass.type'
+      "tutionClass",
+      "tutionClass.subject",
+      "tutionClass.grades",
+      "tutionClass.teacher",
+      "tutionClass.type"
     ]
   });
   return allStudyMaterials;
@@ -57,7 +67,7 @@ export const getStudyMaterialById = async (
   const studyMaterialRepo = await getStudyMaterialRepo();
 
   const studyMaterial =
-    (await studyMaterialRepo.findOne(id, { relations: ['tutionClass'] })) ||
+    (await studyMaterialRepo.findOne(id, { relations: ["tutionClass"] })) ||
     null;
   return studyMaterial;
 };

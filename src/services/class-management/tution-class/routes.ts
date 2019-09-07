@@ -1,14 +1,14 @@
-import { Request, Response } from 'express';
-import { HTTP403Error } from '../../../utils/httpErrors';
+import { Request, Response } from "express";
+import { HTTP403Error } from "../../../utils/httpErrors";
 
-import logger from '../../../utils/logger';
-import { handleError, HTTP_METHOD } from '../../../utils';
-import { verifyJWTToken } from '../../../middleware/auth';
+import logger from "../../../utils/logger";
+import { handleError, HTTP_METHOD } from "../../../utils";
+import { verifyJWTToken } from "../../../middleware/auth";
 
-import * as tutionClassController from './tution-class.controller';
-import { log } from 'util';
+import * as tutionClassController from "./tution-class.controller";
+import { log } from "util";
 
-const API_PRE = '/tution-class';
+const API_PRE = "/tution-class";
 
 export default [
   {
@@ -114,10 +114,10 @@ export default [
           date,
           startTime,
           endTime,
-          teacherId,
-          gradeIds,
-          tutionClassTypeId,
-          subjectId
+          teacher,
+          grades,
+          type,
+          subject
         } = req.body;
         const updatedTutionClass = await tutionClassController.updateTutionClass(
           id,
@@ -125,10 +125,10 @@ export default [
           date,
           startTime,
           endTime,
-          teacherId,
-          gradeIds,
-          tutionClassTypeId,
-          subjectId
+          teacher,
+          grades,
+          type,
+          subject
         );
         res.status(200).send(updatedTutionClass);
       } catch (error) {

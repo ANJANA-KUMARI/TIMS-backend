@@ -5,8 +5,8 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne
-} from 'typeorm';
-import { TutionClass } from '../class-management/tution-class/entities/tution-class.entity';
+} from "typeorm";
+import { TutionClass } from "../class-management/tution-class/entities/tution-class.entity";
 
 @Entity()
 export class StudyMaterial {
@@ -28,7 +28,9 @@ export class StudyMaterial {
   @UpdateDateColumn()
   lastUpdated: Date;
 
-  @ManyToOne(type => TutionClass, tutionClass => tutionClass.studyMaterials)
+  @ManyToOne(type => TutionClass, tutionClass => tutionClass.studyMaterials, {
+    onDelete: "CASCADE"
+  })
   tutionClass: TutionClass;
 
   constructor(desc: string, fileName: string, displayFName: string) {
