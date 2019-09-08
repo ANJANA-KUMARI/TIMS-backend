@@ -1,13 +1,13 @@
-import { Request, Response } from "express";
-import { HTTP403Error } from "../../utils/httpErrors";
+import { Request, Response } from 'express';
+import { HTTP403Error } from '../../utils/httpErrors';
 
-import logger from "../../utils/logger";
-import { handleError, HTTP_METHOD } from "../../utils";
-import { verifyJWTToken } from "../../middleware/auth";
+import logger from '../../utils/logger';
+import { handleError, HTTP_METHOD } from '../../utils';
+import { verifyJWTToken } from '../../middleware/auth';
 
-import * as employeeController from "./employee.controller";
+import * as employeeController from './employee.controller';
 
-const API_PRE = "/employee";
+const API_PRE = '/employee';
 
 export default [
   {
@@ -45,8 +45,8 @@ export default [
           firstName,
           lastName,
           email,
-          address,
           phone,
+          address,
           subject
         );
         res.status(200).send(insertedEmployee);

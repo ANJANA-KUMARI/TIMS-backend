@@ -1,7 +1,7 @@
-import dbCon from "../../utils/db";
-import { Employee } from "./employee.entity";
-import { Subject } from "../class-management/subject/subject.entity";
-import { Connection } from "typeorm";
+import dbCon from '../../utils/db';
+import { Employee } from './employee.entity';
+import { Subject } from '../class-management/subject/subject.entity';
+import { Connection } from 'typeorm';
 
 let con: Connection;
 
@@ -22,7 +22,7 @@ export const createEmployee = async (
   lastName: string,
   email: string,
   address: string,
-  phone: number,
+  phone: string,
   subjectId: number
 ): Promise<Employee | null> => {
   let employee = new Employee(firstName, lastName, email, phone, address);
@@ -47,7 +47,7 @@ export const createEmployee = async (
 export const getAllEmployees = async (): Promise<Employee[]> => {
   const employeeRepo = await getEmployeeRepo();
 
-  const allEmployees = await employeeRepo.find({ relations: ["subject"] });
+  const allEmployees = await employeeRepo.find({ relations: ['subject'] });
   return allEmployees;
 };
 
@@ -64,7 +64,7 @@ export const updateEmployee = async (
   lastName: string,
   email: string,
   address: string,
-  phone: number,
+  phone: string,
   subjectId: number
 ): Promise<Employee> => {
   const employeeRepo = await getEmployeeRepo();

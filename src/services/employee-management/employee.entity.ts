@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
-import { Subject } from "../class-management/subject/subject.entity";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Subject } from '../class-management/subject/subject.entity';
 
 @Entity()
 export class Employee {
@@ -15,8 +15,8 @@ export class Employee {
   @Column()
   email: string;
 
-  @Column()
-  phone: number;
+  @Column('varchar')
+  phone: string;
 
   @Column()
   address: string;
@@ -28,7 +28,7 @@ export class Employee {
     fname: string,
     lname: string,
     email: string,
-    phone: number,
+    phone: string,
     address: string
   ) {
     this.id = 0;

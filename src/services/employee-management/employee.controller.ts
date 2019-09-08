@@ -1,10 +1,10 @@
-import * as employeeService from "./employee.service";
+import * as employeeService from './employee.service';
 
 export const createEmployee = async (
   firstName: string,
   lastName: string,
   email: string,
-  phone: number,
+  phone: string,
   address: string,
   subjectId: number
 ) => {
@@ -39,7 +39,7 @@ export const updateEmployee = async (
   lastName: string,
   email: string,
   address: string,
-  phone: number,
+  phone: string,
   subjectId: number
 ) => {
   const updatedEmployee = await employeeService.updateEmployee(
