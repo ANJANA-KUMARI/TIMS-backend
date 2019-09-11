@@ -12,6 +12,7 @@ import { Grade } from './grade.entity';
 import { TutionClassType } from './tution-class-type.entity';
 import { Teacher } from './teacher.entity';
 import { StudyMaterial } from '../../../study-material/study-material.entity';
+import { Student } from '../../../student-management/student.entity';
 
 @Entity()
 export class TutionClass {
@@ -49,6 +50,9 @@ export class TutionClass {
   )
   type: TutionClassType;
 
+  @ManyToMany(type => Student, student => student.tutionClasses)
+  students: Student[];
+
   constructor(venue: string, date: Date, startTime: Date, endTime: Date) {
     this.id = 0;
     this.grades = null!;
@@ -60,5 +64,7 @@ export class TutionClass {
     this.date = date;
     this.startTime = startTime;
     this.endTime = endTime;
+
+    this.students = null!;
   }
 }

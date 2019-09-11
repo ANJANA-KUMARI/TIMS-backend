@@ -8,6 +8,7 @@ import errorHandlers from './middleware/errorHandlers';
 import classManagementRoutes from './services/class-management';
 import studyMaterialRoutes from './services/study-material';
 import employeeRoutes from './services/employee-management';
+import studentRoutes from './services/student-management';
 import { ClassMngDataLoader } from './services/class-management/';
 
 dotenv.config();
@@ -45,6 +46,7 @@ loadDefaultData([ClassMngDataLoader]);
 applyRoutes(classManagementRoutes, router, `${API_PREFIX}`);
 applyRoutes(studyMaterialRoutes, router, `${API_PREFIX}`);
 applyRoutes(employeeRoutes, router, `${API_PREFIX}`);
+applyRoutes(studentRoutes, router, `${API_PREFIX}`);
 
 const { PORT = 5000 } = process.env;
 const server = http.createServer(router);
