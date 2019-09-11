@@ -3,7 +3,8 @@ import {
   Column,
   ManyToMany,
   JoinColumn,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
+  JoinTable
 } from 'typeorm';
 import { TutionClass } from '../class-management/tution-class/entities/tution-class.entity';
 import { add } from 'winston';
@@ -29,7 +30,7 @@ export class Student {
   address: string;
 
   @ManyToMany(type => TutionClass, tutionClass => tutionClass.students)
-  @JoinColumn()
+  @JoinTable()
   tutionClasses: TutionClass[];
 
   constructor(

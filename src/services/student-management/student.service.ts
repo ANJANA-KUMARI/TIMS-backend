@@ -36,12 +36,14 @@ export const createStudent = async (
 
   for (let i = 0; i < classIds.length; i++) {
     const id = classIds[i];
-    const tClass = await classRepo.findOne(id);
+    const tClass = await classRepo.findOne(id, {
+      relations: ['subject', 'grades']
+    });
     classList.push(tClass as TutionClass);
   }
 
   student.tutionClasses = classList;
-  await studentRepo.insert(student);
+  await studentRepo.save(student);
   return student;
 };
 
@@ -51,12 +53,8 @@ export const getAllStudents = async (): Promise<Student[]> => {
   const allStudents = await studentRepo.find({
     relations: [
       'tutionClasses',
-      'teacher',
-      'subject',
-      'type',
-      'grades',
-      'studyMaterials',
-      'students'
+      'tutionClasses.subject',
+      'tutionClasses.grades'
     ]
   });
   return allStudents;
@@ -94,14 +92,7 @@ export const updateStudent = async (
   for (let i = 0; i < classIds.length; i++) {
     const id = classIds[i];
     const tClass = await classRepo.findOne(id, {
-      relations: [
-        'teacher',
-        'subject',
-        'type',
-        'grades',
-        'studyMaterials',
-        'students'
-      ]
+      relations: ['grades', 'subject']
     });
     classList.push(tClass as TutionClass);
   }
