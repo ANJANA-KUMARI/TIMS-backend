@@ -6,7 +6,8 @@ export const createEmployee = async (
   email: string,
   phone: number,
   address: string,
-  subjectId: number
+  subjectId: number,
+  type: number
 ) => {
   const insertedEmployee = await employeeService.createEmployee(
     firstName,
@@ -14,7 +15,8 @@ export const createEmployee = async (
     email,
     address,
     phone,
-    subjectId
+    subjectId,
+    type
   );
   return insertedEmployee;
 };
@@ -40,7 +42,8 @@ export const updateEmployee = async (
   email: string,
   address: string,
   phone: number,
-  subjectId: number
+  subjectId: number,
+  type: number
 ) => {
   const updatedEmployee = await employeeService.updateEmployee(
     employeeId,
@@ -49,7 +52,12 @@ export const updateEmployee = async (
     email,
     address,
     phone,
-    subjectId
+    subjectId,
+    type
   );
   return updatedEmployee;
+};
+
+export const getAllEmployeeTypes = async () => {
+  return await employeeService.getAllEmployeeTypes();
 };

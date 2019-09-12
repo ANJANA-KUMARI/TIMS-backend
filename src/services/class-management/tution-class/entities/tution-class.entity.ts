@@ -5,13 +5,15 @@ import {
   ManyToOne,
   ManyToMany,
   JoinTable,
-  OneToMany
-} from 'typeorm';
-import { Subject } from '../../subject/subject.entity';
-import { Grade } from './grade.entity';
-import { TutionClassType } from './tution-class-type.entity';
-import { Teacher } from './teacher.entity';
-import { StudyMaterial } from '../../../study-material/study-material.entity';
+  OneToMany,
+  JoinColumn
+} from "typeorm";
+import { Subject } from "../../subject/subject.entity";
+import { Grade } from "./grade.entity";
+import { TutionClassType } from "./tution-class-type.entity";
+import { Teacher } from "./teacher.entity";
+import { StudyMaterial } from "../../../study-material/study-material.entity";
+import { Employee } from "../../../employee-management/employee.entity";
 
 @Entity()
 export class TutionClass {
@@ -30,8 +32,9 @@ export class TutionClass {
   @Column()
   endTime: Date;
 
-  @ManyToOne(type => Teacher, teacher => teacher.tutionClasses)
-  teacher: Teacher;
+  @ManyToOne(type => Employee)
+  @JoinColumn()
+  teacher: Employee;
 
   @ManyToOne(type => Subject, subject => subject.tutionClasses)
   subject: Subject;

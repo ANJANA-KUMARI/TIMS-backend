@@ -7,9 +7,33 @@ import { verifyJWTToken } from "../../middleware/auth";
 
 import * as employeeController from "./employee.controller";
 
-const API_PRE = "/employee";
+const API_PRE = "/employees";
 
 export default [
+  {
+    path: `${API_PRE}/teachers`,
+    method: HTTP_METHOD.GET,
+    handler: async (req: Request, res: Response) => {
+      try {
+        const allEmployees = await employeeController.getAllEmployees();
+        res.status(200).send(allEmployees.filter(e => e.type.id == 1));
+      } catch (error) {
+        handleError(error, res);
+      }
+    }
+  },
+  {
+    path: `${API_PRE}/types`,
+    method: HTTP_METHOD.GET,
+    handler: async (req: Request, res: Response) => {
+      try {
+        const allEmployeeTypes = await employeeController.getAllEmployeeTypes();
+        res.status(200).send(allEmployeeTypes);
+      } catch (error) {
+        handleError(error, res);
+      }
+    }
+  },
   {
     path: `${API_PRE}/:id?*`,
     method: HTTP_METHOD.GET,
@@ -39,15 +63,17 @@ export default [
           email,
           address,
           phone,
-          subject
+          subject,
+          type
         } = req.body;
         const insertedEmployee = await employeeController.createEmployee(
           firstName,
           lastName,
           email,
-          address,
           phone,
-          subject
+          address,
+          subject,
+          type
         );
         res.status(200).send(insertedEmployee);
       } catch (error) {
@@ -67,7 +93,8 @@ export default [
           email,
           address,
           phone,
-          subject
+          subject,
+          type
         } = req.body;
         const updatedEmployee = await employeeController.updateEmployee(
           id,
@@ -76,7 +103,8 @@ export default [
           email,
           address,
           phone,
-          subject
+          subject,
+          type
         );
         res.status(200).send(updatedEmployee);
       } catch (error) {

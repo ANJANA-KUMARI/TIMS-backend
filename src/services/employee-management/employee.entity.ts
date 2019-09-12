@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
 import { Subject } from "../class-management/subject/subject.entity";
+import { EmployeeType } from "./employee-type.entity";
 
 @Entity()
 export class Employee {
@@ -24,6 +25,9 @@ export class Employee {
   @ManyToOne(type => Subject, subject => subject.employees)
   subject: Subject;
 
+  @ManyToOne(type => EmployeeType, employeeType => employeeType.employees)
+  type: EmployeeType;
+
   constructor(
     fname: string,
     lname: string,
@@ -38,5 +42,6 @@ export class Employee {
     this.phone = phone;
     this.address = address;
     this.subject = null!;
+    this.type = null!;
   }
 }

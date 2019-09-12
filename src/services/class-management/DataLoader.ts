@@ -5,6 +5,5 @@ export class DataLoader implements IDefaultDataLoader {
   async load(): Promise<void> {
     await classService.createDefaultGrades();
     await classService.createDefaultTutionClassTypes();
-    await classService.createDefaultTeachers();
   }
 }

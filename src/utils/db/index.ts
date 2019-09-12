@@ -8,6 +8,7 @@ import { TutionClass } from "../../services/class-management/tution-class/entiti
 import { Teacher } from "../../services/class-management/tution-class/entities/teacher.entity";
 import { StudyMaterial } from "../../services/study-material/study-material.entity";
 import { Employee } from "../../services/employee-management/employee.entity";
+import { EmployeeType } from "../../services/employee-management/employee-type.entity";
 
 const connection = createConnection({
   type: "mysql",
@@ -23,7 +24,8 @@ const connection = createConnection({
     TutionClassType,
     Teacher,
     StudyMaterial,
-    Employee
+    Employee,
+    EmployeeType
   ],
   synchronize: true
 });

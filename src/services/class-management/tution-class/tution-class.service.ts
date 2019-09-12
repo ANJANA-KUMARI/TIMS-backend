@@ -4,6 +4,7 @@ import { TutionClassType } from "./entities/tution-class-type.entity";
 import { Grade } from "./entities/grade.entity";
 import { Teacher } from "./entities/teacher.entity";
 import { Subject } from "../subject/subject.entity";
+import { Employee } from "../../employee-management/employee.entity";
 
 const getClassRepo = async () => {
   const con = await dbCon;
@@ -25,7 +26,7 @@ const getGradeRepo = async () => {
 
 const getTeacherRepo = async () => {
   const con = await dbCon;
-  const teacherRepo = con.getRepository(Teacher);
+  const teacherRepo = con.getRepository(Employee);
   return teacherRepo;
 };
 
