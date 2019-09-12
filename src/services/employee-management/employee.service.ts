@@ -28,7 +28,7 @@ export const createEmployee = async (
   lastName: string,
   email: string,
   address: string,
-  phone: number,
+  phone: string,
   subjectId: number,
   type: number
 ): Promise<Employee | null> => {
@@ -75,7 +75,7 @@ export const updateEmployee = async (
   lastName: string,
   email: string,
   address: string,
-  phone: number,
+  phone: string,
   subjectId: number,
   type: number
 ): Promise<Employee> => {

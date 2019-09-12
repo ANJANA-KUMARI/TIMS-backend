@@ -10,6 +10,7 @@ import studyMaterialRoutes from "./services/study-material";
 import employeeRoutes from "./services/employee-management";
 import { ClassMngDataLoader } from "./services/class-management/";
 import { empDataLoader } from "./services/employee-management";
+import studentRoutes from "./services/student-management";
 
 dotenv.config();
 
@@ -46,6 +47,7 @@ loadDefaultData([ClassMngDataLoader, empDataLoader]);
 applyRoutes(classManagementRoutes, router, `${API_PREFIX}`);
 applyRoutes(studyMaterialRoutes, router, `${API_PREFIX}`);
 applyRoutes(employeeRoutes, router, `${API_PREFIX}`);
+applyRoutes(studentRoutes, router, `${API_PREFIX}`);
 
 const { PORT = 5000 } = process.env;
 const server = http.createServer(router);

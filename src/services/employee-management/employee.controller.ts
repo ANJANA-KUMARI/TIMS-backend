@@ -4,7 +4,7 @@ export const createEmployee = async (
   firstName: string,
   lastName: string,
   email: string,
-  phone: number,
+  phone: string,
   address: string,
   subjectId: number,
   type: number
@@ -41,7 +41,7 @@ export const updateEmployee = async (
   lastName: string,
   email: string,
   address: string,
-  phone: number,
+  phone: string,
   subjectId: number,
   type: number
 ) => {

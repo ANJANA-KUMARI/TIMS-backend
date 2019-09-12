@@ -16,8 +16,8 @@ export class Employee {
   @Column()
   email: string;
 
-  @Column()
-  phone: number;
+  @Column("varchar")
+  phone: string;
 
   @Column()
   address: string;
@@ -32,7 +32,7 @@ export class Employee {
     fname: string,
     lname: string,
     email: string,
-    phone: number,
+    phone: string,
     address: string
   ) {
     this.id = 0;
