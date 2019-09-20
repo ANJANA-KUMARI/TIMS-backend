@@ -253,7 +253,7 @@ export const getAllTutionClasses = async () => {
   const repo = await getClassRepo();
 
   const allTutionClasses = await repo.find({
-    relations: ["teacher", "subject", "grades", "type", "studyMaterials"]
+    relations: ["teacher","students", "subject", "grades", "type", "studyMaterials"]
   });
 
   return allTutionClasses;
